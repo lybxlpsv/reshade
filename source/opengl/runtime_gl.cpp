@@ -231,9 +231,10 @@ void reshade::opengl::runtime_gl::on_present()
 	glBlitFramebuffer(0, 0, _width, _height, 0, 0, _width, _height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
 	// Copy depth from FBO to depth texture
-	glBindFramebuffer(GL_READ_FRAMEBUFFER, _depth_source != 0 ? _fbo[FBO_DEPTH] : 0);
+	//glBindFramebuffer(GL_READ_FRAMEBUFFER, _depth_source != 0 ? _fbo[FBO_DEPTH] : 0
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, 3);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _fbo[FBO_BLIT]);
-	glBlitFramebuffer(0, 0, _width, _height, 0, 0, _width, _height, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+	glBlitFramebuffer(0, 0, *(int*)0x00000001411ABB50, *(int*)0x00000001411ABB54, 0, 0, _width, _height, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
 
 	// Set clip space to something consistent
 	if (gl3wProcs.gl.ClipControl != nullptr)
